@@ -19,10 +19,10 @@
         font-family: 'Inter', sans-serif;
     }
 </style>
-<body class="inter-font max-w-[1400px] mx-auto">
+<body class="inter-font max-w-[1440px] mx-auto">
 
     <header>
-        <div class="flex flex-col md:flex-row gap-5 justify-between items-center mt-[50px]   mx-10 lg:mx-0" >
+        <div class="flex flex-col md:flex-row gap-5 justify-between items-center mt-[50px]   p-10 lg:p-0" >
 
             <div>
                 <img class="w-full" src="images/Logo.png" alt="">
@@ -31,7 +31,7 @@
                 <button class="bg-[#25252533] tex-[18px] text-[#252525] font-medium py-[10px] px-[20px] rounded-[4px]">Sort by view</button>
             </div>
             <div>
-                <a href="http://127.0.0.1:5500/answer.html"><button class="bg-[#FF1F3D] text-white tex-[18px] font-medium py-[10px] px-[20px] rounded-[4px]">Blog</button></a>
+                <a href="http://127.0.0.1:5500/answer.html" target="_blank"><button class="bg-[#FF1F3D] text-white tex-[18px] font-medium py-[10px] px-[20px] rounded-[4px]">Blog</button></a>
             </div>
 
         </div>
@@ -43,9 +43,36 @@
 
     <main>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 my-[40px] text-center justify-center items-center gap-6 md:gap-0 max-w-[300px] md:max-w-[500px] mx-auto" id="category-list">
+            <!-- Category list -->
+        <div class="grid grid-cols-2 md:grid-cols-4 my-[40px] text-center justify-center items-center gap-5 md:gap-0 max-w-[300px] md:max-w-[500px] mx-auto" id="category-list">
             <!-- <a class="tab"><button class="py-[5px] px-[20px] text-[18px] font-semibold rounded-[4px] bg-[#25252526] text-[#252525B2]">${element.category} </button></a> -->
           
+        </div>
+
+
+        <!-- card section -->
+
+        <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 justify-between items-center p-10 lg:p-0">
+
+            <!-- <div class="card card-compact w-96 bg-base-100 shadow-xl">
+                <figure><img src="images/Icon.png" alt="Shoes" /></figure>
+
+                <div class="flex gap-5 mt-5">
+
+                    <div>
+                        <img src="images/Logo.png" alt="">
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="card-title text-[16px] text-[#171717] font-bold">Shoes!</h2>
+                        <p class="text-sm text-[#171717B2] font-normal">If a dog chews shoes whose shoes does he choose?</p>
+                        <p class="text-sm text-[#171717B2] font-normal">90k</p>
+                      </div>
+
+                </div>
+
+              </div> -->
+
         </div>
 
     </main>
