@@ -69,7 +69,7 @@ const handleNews= async (id) =>{
                         </svg>
                         ` : ''}</p>
                         </div>
-                        <p class="text-sm text-[#171717B2] font-normal">${element.others.views}</p>
+                        <p class="text-sm text-[#171717B2] font-normal">${element.others.views} views</p>
                         
                       </div>
 
