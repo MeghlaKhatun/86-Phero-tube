@@ -1,11 +1,11 @@
 const handleCategory= async ()=>{
     const response=await fetch("https://openapi.programming-hero.com/api/videos/categories");
     const data =await response.json();
-    
+    // console.log(data)
     const categoryList=document.getElementById("category-list");
 
     data.data.forEach((element) => {
-        handleNews(element.category_id);
+        // handleNews(element.category_id);
         const div=document.createElement("div");
         div.innerHTML=`
         <button onclick=" handleNews('${element.category_id}')" class="py-[5px] px-[20px] text-[18px] font-semibold rounded-[4px] bg-[#25252526] text-[#252525B2] hover:bg-[#FF1F3D] hover:text-white">${element.category} </button>
@@ -15,24 +15,36 @@ const handleCategory= async ()=>{
     
 }
 
+
+
 const handleNews= async (id) =>{
     const response=await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await response.json();
     // console.log(data.data);
-    getNoContent(data.data)
 
-    const cardContainer=document.getElementById("card-container");
-    cardContainer.textContent="";
+    getNoContent(data.data);
+
 
 
     
+   
+    const cardContainer=document.getElementById("card-container");
+    cardContainer.textContent="";
+
     data.data?.forEach((element) => {
+
+        // console.log(element)
         const div=document.createElement("div");
+
+        div.dataset .views = parseInt(element.others.views);
+
         div.innerHTML=`
         <div class="card card-compact h-[350px]  bg-base-100 shadow-xl">
-                <figure><img class="w-full h-[200px]" src=${element.thumbnail} /></figure>
-                 <p class="absolute bg-black text-[10px] text-white p-1 rounded-[4px] ml-[250px] mt-[150px]">${element.others.posted_date} </p> 
 
+        
+        <figure> <img class="w-full h-[200px]" src=${element.thumbnail} /></figure>
+        ${element.others.posted_date ? getTime(element.others.posted_date) : ""}
+        
                 <div class="flex p-5">
 
                 <div>
@@ -67,13 +79,61 @@ const handleNews= async (id) =>{
         `;
         cardContainer.appendChild(div); 
     })
+
+ 
+    
+    
+
 }
 
 
 
+// ===============Times======================
+
+
+
+const getTime=(times)=>{
+
+const minute =Math.floor(times / 60);
+const hour =Math.floor(minute / 60);
+const mainMinute=Math.floor(minute - hour*60)
+
+    return `<div class="bg-black text-white p-1 rounded absolute  text-sm text-center w-2/4 top-[150px] left-[150px]"> ${hour} hrs ${mainMinute} min ago </div>`;
+}
+
+// =====sort view==============
+
+
+const sortViewButton=document.getElementById("sort-view");
+sortViewButton.addEventListener("click",()=>{
+    sortByViews();
+
+})
+
+const  sortByViews = () =>{
+    const cardContainer = document.getElementById("card-container");
+
+
+    const sortData = Array.from(cardContainer.children);
+
+    
+    sortData.sort((a,b) =>{
+        const A=parseInt(a.dataset.views);
+        const B = parseInt(b.dataset.views);
+        return B-A;
+    } );
+
+    cardContainer.innerHTML ="";
+    sortData.forEach((video)=>{
+        cardContainer.appendChild(video)
+    });
+};
+
+
+
+//================== card default==========================
 
 const getNoContent=(content)=>{
-    console.log(content)
     const contentId=document.getElementById("no-content")
 
     if(content.length<1){
@@ -86,3 +146,6 @@ const getNoContent=(content)=>{
 
 
 handleCategory()
+
+handleNews("1000")
+
